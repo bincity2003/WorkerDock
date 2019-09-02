@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace WorkerDock.Plugins.builtin
@@ -21,9 +22,25 @@ namespace WorkerDock.Plugins.builtin
             };
         }
 
-        public override void Run(string name, string[] args)
+        public override int Run(string command, string[] args)
         {
-            throw new NotImplementedException();
+            command = command.ToLower();
+
+            if (!CallableCommand.Contains(command))
+            {
+                UnrecognizedCommand(command);
+            }
+
+            switch (command)
+            {
+                default:
+                    break;
+            }
+        }
+
+        private void UnrecognizedCommand(string command)
+        {
+            Console.WriteLine($"\"{command}\" is not a valid command. Please check syntax!");
         }
     }
 }
