@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WorkerDock.Plugins.builtin
+namespace WorkerDock.Plugins
 {
     public sealed class BasicPlugin : PluginObject
     {
