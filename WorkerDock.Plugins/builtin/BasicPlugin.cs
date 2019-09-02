@@ -21,7 +21,7 @@ namespace WorkerDock.Plugins.builtin
             };
         }
 
-        public override void Run(string[] args)
+        public override void Run(string name, string[] args)
         {
             throw new NotImplementedException();
         }
