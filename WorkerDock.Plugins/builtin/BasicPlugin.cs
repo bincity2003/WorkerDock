@@ -29,13 +29,39 @@ namespace WorkerDock.Plugins.builtin
             if (!CallableCommand.Contains(command))
             {
                 UnrecognizedCommand(command);
+                return -1;
             }
 
             switch (command)
             {
-                default:
+                case "exit":
+                    CallExit();
+                    break;
+                case "clean":
+                    CallClean();
+                    break;
+                case "config":
+                    CallConfig();
                     break;
             }
+
+            return 0;
+        }       
+
+        private void CallExit()
+        {
+            Environment.Exit(0);
+        }
+
+        private void CallClean()
+        {
+            Console.WriteLine("Cleaning up...");
+            Console.WriteLine("Cleaning completed!");
+        }
+
+        private void CallConfig()
+        {
+            Console.WriteLine("Config not supported yet!");
         }
 
         private void UnrecognizedCommand(string command)
