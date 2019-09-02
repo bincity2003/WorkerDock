@@ -9,7 +9,8 @@ namespace WorkerDock.Plugins
         public abstract string Name { get; }
         public abstract string Version { get; }
         public abstract string InvokeID { get; }
+        public abstract string[] CallableCommand { get; }
 
-        public abstract void Startup(string[] args);
+        public abstract void Run(string[] args);
     }
 }
