@@ -7,7 +7,7 @@ namespace WorkerDock
     internal class Program
     {
         private static string Prompt;
-        private static Dictionary<string, PluginObject> Plugins;
+        private static readonly Dictionary<string, PluginObject> Plugins = new Dictionary<string, PluginObject>();
 
         private static void Main(string[] args)
         {
@@ -34,7 +34,8 @@ namespace WorkerDock
                 {
                     try
                     {
-                        Console.WriteLine(Plugins[callee].Version); 
+                        Console.WriteLine(Plugins[callee].Version);
+                        continue;
                     }
                     catch (KeyNotFoundException)
                     {
@@ -57,10 +58,11 @@ namespace WorkerDock
 
         private static void PreStartupSetup()
         {
-            // Load plugins
-            Plugins = new Dictionary<string, PluginObject>();
             BasicPlugin basic = new BasicPlugin();
+            NotePlugin note = new NotePlugin();
+
             Plugins.Add(basic.InvokeID, basic);
+            Plugins.Add(note.InvokeID, note);
 
             // Load prompt
             LoadPrompt();
