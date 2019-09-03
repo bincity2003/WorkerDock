@@ -37,7 +37,7 @@ namespace WorkerDock.Plugins
                     CallExit();
                     break;
                 case "config":
-                    CallConfig();
+                    CallConfig(args);
                     break;
             }
 
@@ -49,9 +49,9 @@ namespace WorkerDock.Plugins
             Environment.Exit(0);
         }
 
-        private void CallConfig()
+        private void CallConfig(string[] args)
         {
-            Console.WriteLine("Config not supported yet!");
+
         }
 
         private void UnrecognizedCommand(string command)
