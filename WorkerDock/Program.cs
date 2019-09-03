@@ -14,9 +14,7 @@ namespace WorkerDock
 
         private static void Main(string[] args)
         {
-            User = "user";
-            Domain = "SPMC";
-            LoadPlugins();
+            PreStartupSetup();
 
             bool executionContinue = true;
             string[] command;
@@ -44,8 +42,13 @@ namespace WorkerDock
             }
         }
 
-        private static void LoadPlugins()
+        private static void PreStartupSetup()
         {
+            // Prompt setting
+            User = "user";
+            Domain = "SPMC";
+
+            // Load plugins
             Plugins = new Dictionary<string, PluginObject>();
 
             BasicPlugin basic = new BasicPlugin();
