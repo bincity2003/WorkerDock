@@ -6,7 +6,7 @@ namespace WorkerDock.Plugins
     public sealed class BasicPlugin : PluginObject
     {
         public override string Name => "BasicPlugin";
-        public override string Version => "1.0.0";
+        public override string Version => "BasicPlugin-1.0.0";
         public override string InvokeID => "";
         public override string[] CallableCommand { get; }
 
