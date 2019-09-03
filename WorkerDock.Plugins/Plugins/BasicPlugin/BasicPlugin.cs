@@ -13,7 +13,7 @@ namespace WorkerDock.Plugins
         public override string[] CallableCommand { get; }
 
         private string _Name = "user";
-        private string _Domain = Environment.MachineName;
+        private string _Domain = "WorkerDock";
         private bool _IsDomainShown = true;
         private bool _IsPromptShown = true;
         public string Prompt
@@ -119,13 +119,13 @@ namespace WorkerDock.Plugins
                             }
                             break;
                         default:
-                            Console.WriteLine(System.IO.File.ReadAllText("InvalidArgConfigCall.txt"));
+                            Console.WriteLine(System.IO.File.ReadAllText("Plugins/BasicPlugin/InvalidArgConfigCall.txt"));
                             break;
                     }
                 }
                 else
                 {
-                    Console.WriteLine(System.IO.File.ReadAllText("InvalidArgConfigCall.txt"));
+                    Console.WriteLine(System.IO.File.ReadAllText("Plugins/BasicPlugin/InvalidArgConfigCall.txt"));
                 }
             }
         }
