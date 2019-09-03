@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <None Update="Plugins\BasicPlugin\InvalidArgConfigCall.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
