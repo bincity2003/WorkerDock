@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29123.89
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerDock", "WorkerDock\WorkerDock.csproj", "{F72AEED9-2BF8-4EF1-AF23-AF03F8D8BDD0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerDock", "src\WorkerDock\WorkerDock.csproj", "{F72AEED9-2BF8-4EF1-AF23-AF03F8D8BDD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerDock.Plugins", "WorkerDock.Plugins\WorkerDock.Plugins.csproj", "{E9005E23-E3BF-4220-9E0B-BB3859D67EA3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerDock.Plugins", "src\WorkerDock.Plugins\WorkerDock.Plugins.csproj", "{E9005E23-E3BF-4220-9E0B-BB3859D67EA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
