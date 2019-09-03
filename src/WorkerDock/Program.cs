@@ -53,6 +53,10 @@ namespace WorkerDock
                 {
                     Plugins[""].Run(callee, parameters);
                 }
+                catch (IndexOutOfRangeException)
+                {
+                    Plugins[callee].Run(null, null);
+                }
             }
         }
 
