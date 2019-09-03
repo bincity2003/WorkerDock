@@ -6,9 +6,7 @@ namespace WorkerDock
 {
     internal class Program
     {
-        private static string User;
-        private static string Domain;
-        private static string Prompt => $"{User}@{Domain} > ";
+        private static string Prompt;
 
         private static Dictionary<string, PluginObject> Plugins;
 
@@ -22,6 +20,7 @@ namespace WorkerDock
             string[] parameters;
             while (executionContinue)
             {
+                LoadPrompt();
                 Console.Write(Prompt);
                 command = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries);
                 if (command.Length == 0)
@@ -44,15 +43,18 @@ namespace WorkerDock
 
         private static void PreStartupSetup()
         {
-            // Prompt setting
-            User = "user";
-            Domain = "SPMC";
-
             // Load plugins
             Plugins = new Dictionary<string, PluginObject>();
-
             BasicPlugin basic = new BasicPlugin();
             Plugins.Add(basic.InvokeID, basic);
+
+            // Load prompt
+            LoadPrompt();
+        }
+
+        private static void LoadPrompt()
+        {
+            Prompt = ((BasicPlugin)Plugins[""]).Prompt;
         }
     }
 }
