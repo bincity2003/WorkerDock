@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace WorkerDock.Plugins
 {
@@ -72,7 +70,7 @@ namespace WorkerDock.Plugins
             }
 
             return 0;
-        }       
+        }
 
         private void CallClear()
         {
