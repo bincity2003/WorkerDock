@@ -17,7 +17,6 @@ namespace WorkerDock.Plugins
             CallableCommand = new string[]
             {
                 "exit",
-                "clean",
                 "config"
             };
         }
@@ -37,9 +36,6 @@ namespace WorkerDock.Plugins
                 case "exit":
                     CallExit();
                     break;
-                case "clean":
-                    CallClean();
-                    break;
                 case "config":
                     CallConfig();
                     break;
@@ -51,12 +47,6 @@ namespace WorkerDock.Plugins
         private void CallExit()
         {
             Environment.Exit(0);
-        }
-
-        private void CallClean()
-        {
-            Console.WriteLine("Cleaning up...");
-            Console.WriteLine("Cleaning completed!");
         }
 
         private void CallConfig()
