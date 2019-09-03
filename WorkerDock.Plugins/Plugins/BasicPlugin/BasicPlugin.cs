@@ -42,6 +42,7 @@ namespace WorkerDock.Plugins
         {
             CallableCommand = new string[]
             {
+                "clear",
                 "exit",
                 "config"
             };
@@ -59,6 +60,9 @@ namespace WorkerDock.Plugins
 
             switch (command)
             {
+                case "clear":
+                    CallClear();
+                    break;
                 case "exit":
                     CallExit();
                     break;
@@ -69,6 +73,11 @@ namespace WorkerDock.Plugins
 
             return 0;
         }       
+
+        private void CallClear()
+        {
+            Console.Clear();
+        }
 
         private void CallExit()
         {
