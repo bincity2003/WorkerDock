@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using WorkerDock.Plugins.Component.Private;
+using Newtonsoft.Json;
 
 namespace WorkerDock.Plugins
 {
@@ -12,6 +15,8 @@ namespace WorkerDock.Plugins
         public override string InvokeID => "note";
         public override string[] CallableCommand { get; }
 
+        private Dictionary<string, Note> DataTable;
+
         public NotePlugin()
         {
             CallableCommand = new string[]
@@ -21,10 +26,33 @@ namespace WorkerDock.Plugins
                 "delete",
                 "version",
             };
+
+            if (!File.Exists("Plugins/NotePlugin/usr/data.txt"))
+            {
+                DataTable = new Dictionary<string, Note>();
+            }
+            else
+            {
+                string text = File.ReadAllText("Plugins/NotePlugin/usr/data.txt");
+                try
+                {
+                    DataTable = JsonConvert.DeserializeObject<Dictionary<string, Note>>(text);
+                }
+                catch
+                {
+                    DataTable = new Dictionary<string, Note>();
+                }
+            }
         }
 
         public override int Run(string command, string[] args)
         {
+            if (args is null || command is null)
+            {
+                Console.WriteLine(File.ReadAllText("Plugins/NotePlugin/NoArgNoteCall.txt"));
+                return -1;
+            }
+
             command = command.ToLower();
 
             if (!CallableCommand.Contains(command))
@@ -54,7 +82,38 @@ namespace WorkerDock.Plugins
 
         private void CallAdd(string[] args)
         {
-            throw new NotImplementedException();
+            bool includeDate = false;
+            string content = string.Empty;
+            if (args is null || args.Length == 0 || args.Length > 2)
+            {
+                Console.WriteLine(File.ReadAllText("Plugins/NotePlugin/InvalidArgAddCall.txt"));
+            }
+            else
+            {
+                foreach (var item in args)
+                {
+                    switch (item)
+                    {
+                        case "-d":
+                        case "--date":
+                            includeDate = true;
+                            break;
+                        default:
+                            content = item;
+                            break;
+                    }
+                }
+
+                Note note = new Note();
+                if (includeDate)
+                {
+                    note.Date = DateTime.UtcNow;
+                }
+                note.Content = content;
+                string index = note.GetHashCode().ToString();
+                note.Index = index;
+                DataTable.Add(index, note);
+            }            
         }
 
         private void CallDelete(string[] args)
