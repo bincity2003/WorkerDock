@@ -1,0 +1,4 @@
+﻿Usage: note add [options] <content>
+
+Where [options] are:
+-d, --date

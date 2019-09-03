@@ -1,0 +1,6 @@
+﻿Usage: note <command> [arguments]
+
+Where <command> can be:
+add
+delete
+view
