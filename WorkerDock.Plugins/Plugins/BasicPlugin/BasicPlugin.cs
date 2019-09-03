@@ -79,7 +79,7 @@ namespace WorkerDock.Plugins
         {
             if (args.Length != 1)
             {
-                Console.WriteLine(System.IO.File.ReadAllText("InvalidArgConfigCall.txt"));
+                Console.WriteLine(System.IO.File.ReadAllText("Plugins/BasicPlugin/InvalidArgConfigCall.txt"));
             }
             else
             {
