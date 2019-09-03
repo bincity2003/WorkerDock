@@ -40,9 +40,10 @@ namespace WorkerDock.Plugins
         {
             CallableCommand = new string[]
             {
+                "config",
                 "clear",
                 "exit",
-                "config"
+                "version",
             };
         }
 
@@ -58,6 +59,9 @@ namespace WorkerDock.Plugins
 
             switch (command)
             {
+                case "version":
+                    Console.WriteLine(Version);
+                    break;
                 case "clear":
                     CallClear();
                     break;
@@ -93,7 +97,7 @@ namespace WorkerDock.Plugins
                 string[] pair = args[0].Split(':', StringSplitOptions.RemoveEmptyEntries);
                 if (pair.Length == 2)
                 {
-                    string name = pair[0];
+                    string name = pair[0].ToLower();
                     string value = pair[1];
 
                     switch (name)
