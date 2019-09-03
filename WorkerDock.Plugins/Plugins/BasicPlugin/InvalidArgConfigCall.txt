@@ -1,6 +1,8 @@
 ﻿Usage: config <ConfigName>:<Value>
+
 Where <configName> (and its corresponding type) can be:
-    user - string				: Console current user
-	domain - string				: Console current domain
-	isDomainShown - bool		: Is domain shown in prompt ?
-	isPromptShown - bool		: Is prompt shown at all ?
+
+user - string               : Console current user
+domain - string             : Console current domain
+isDomainShown - bool        : Is domain shown in prompt ?
+isPromptShown - bool        : Is prompt shown at all ?
