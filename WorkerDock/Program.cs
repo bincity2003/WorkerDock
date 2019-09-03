@@ -7,7 +7,6 @@ namespace WorkerDock
     internal class Program
     {
         private static string Prompt;
-
         private static Dictionary<string, PluginObject> Plugins;
 
         private static void Main(string[] args)
@@ -30,6 +29,21 @@ namespace WorkerDock
                 callee = command[0];
                 parameters = command[1..^0];
 
+                // Checking version
+                if (parameters.Length == 1 && parameters[0] == "--version")
+                {
+                    try
+                    {
+                        Console.WriteLine(Plugins[callee].Version); 
+                    }
+                    catch (KeyNotFoundException)
+                    {
+                        Plugins[""].Run(callee, parameters);
+                        continue;
+                    }
+                }
+
+                // Parsing command
                 try
                 {
                     Plugins[callee].Run(parameters[0], parameters[1..^0]);
