@@ -14,8 +14,8 @@ namespace WorkerDock.Plugins
 
         private string _Name = "user";
         private string _Domain = Environment.MachineName;
-        private bool _IsDomainShown;
-        private bool _IsPromptShown;
+        private bool _IsDomainShown = true;
+        private bool _IsPromptShown = true;
         public string Prompt
         {
             get
