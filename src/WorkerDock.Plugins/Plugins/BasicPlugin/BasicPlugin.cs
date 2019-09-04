@@ -42,6 +42,30 @@ namespace WorkerDock.Plugins
                 OnPromptChange?.Invoke();
             }
         }
+        public bool ShowDomain
+        {
+            get
+            {
+                return _IsDomainShown;
+            }
+            set
+            {
+                _IsDomainShown = value;
+                OnPromptChange?.Invoke();
+            }
+        }
+        public bool ShowPrompt
+        {
+            get
+            {
+                return _IsPromptShown;
+            }
+            set
+            {
+                _IsPromptShown = value;
+                OnPromptChange?.Invoke();
+            }
+        }
         public string Prompt
         {
             get
@@ -136,7 +160,7 @@ namespace WorkerDock.Plugins
                         case "domain":
                             Domain = value;
                             break;
-                        case "isDomainShown":
+                        case "isdomainshown":
                             bool status;
                             if (!bool.TryParse(value, out status))
                             {
@@ -144,17 +168,17 @@ namespace WorkerDock.Plugins
                             }
                             else
                             {
-                                _IsDomainShown = status;
+                                ShowDomain = status;
                             }
                             break;
-                        case "isPromptShown":
+                        case "ispromptshown":
                             if (!bool.TryParse(value, out status))
                             {
                                 Console.WriteLine("Invalid value given!");
                             }
                             else
                             {
-                                _IsPromptShown = status;
+                                ShowPrompt = status;
                             }
                             break;
                         default:
