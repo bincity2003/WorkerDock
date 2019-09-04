@@ -2,7 +2,7 @@
 using System.Linq;
 
 namespace WorkerDock.Plugins
-{
+{   
     public sealed class BasicPlugin : PluginObject
     {
         public override string Name => "BasicPlugin";
@@ -10,10 +10,38 @@ namespace WorkerDock.Plugins
         public override string InvokeID => "";
         public override string[] CallableCommand { get; }
 
-        private string _Name = "user";
+        public delegate void CustomHandler();
+        public event CustomHandler OnPromptChange;
+
+        private string _User = "user";
         private string _Domain = "WorkerDock";
         private bool _IsDomainShown = true;
         private bool _IsPromptShown = true;
+
+        public string User
+        {
+            get
+            {
+                return _User;
+            }
+            set
+            {
+                _User = value;
+                OnPromptChange?.Invoke();
+            }
+        }
+        public string Domain
+        {
+            get
+            {
+                return _Domain;
+            }
+            set
+            {
+                _Domain = value;
+                OnPromptChange?.Invoke();
+            }
+        }
         public string Prompt
         {
             get
@@ -26,11 +54,11 @@ namespace WorkerDock.Plugins
                 {
                     if (_IsDomainShown)
                     {
-                        return $"{_Name}@{_Domain}> ";
+                        return $"{_User}@{_Domain}> ";
                     }
                     else
                     {
-                        return $"{_Name}> ";
+                        return $"{_User}> ";
                     }
                 }
             }
@@ -103,10 +131,10 @@ namespace WorkerDock.Plugins
                     switch (name)
                     {
                         case "user":
-                            _Name = value;
+                            User = value;
                             break;
                         case "domain":
-                            _Domain = value;
+                            Domain = value;
                             break;
                         case "isDomainShown":
                             bool status;
