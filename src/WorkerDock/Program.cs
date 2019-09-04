@@ -19,7 +19,6 @@ namespace WorkerDock
             string[] parameters;
             while (executionContinue)
             {
-                LoadPrompt();
                 Console.Write(Prompt);
                 command = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries);
                 if (command.Length == 0)
@@ -65,10 +64,11 @@ namespace WorkerDock
             BasicPlugin basic = new BasicPlugin();
             NotePlugin note = new NotePlugin();
 
-            Plugins.Add(basic.InvokeID, basic);
-            Plugins.Add(note.InvokeID, note);
+            basic.OnPromptChange += LoadPrompt;
 
-            // Load prompt
+            Plugins.Add(basic.InvokeID, basic);
+            Plugins.Add(note.InvokeID, note);            
+
             LoadPrompt();
         }
 
