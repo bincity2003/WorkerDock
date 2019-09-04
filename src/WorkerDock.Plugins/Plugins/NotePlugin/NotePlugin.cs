@@ -84,26 +84,20 @@ namespace WorkerDock.Plugins
         {
             bool includeDate = false;
             string content = string.Empty;
-            if (args is null || args.Length == 0 || args.Length > 2)
+            if (args.Length >= 2)
             {
-                Console.WriteLine(File.ReadAllText("Plugins/NotePlugin/InvalidArgAddCall.txt"));
-            }
-            else
-            {
-                foreach (var item in args)
+                for (int i = 0; i < args.Length; i++)
                 {
-                    switch (item)
+                    if (args[i] == "-d" || args[i] == "--date")
                     {
-                        case "-d":
-                        case "--date":
-                            includeDate = true;
-                            break;
-                        default:
-                            content = item;
-                            break;
+                        includeDate = true;
                     }
+                    else if (args[i].IndexOf("\"") == 0)
+                    {
+                        content = string.Join(' ', args[i..^0]);
+                    }                   
                 }
-
+                content = content[1..^1];
                 Note note = new Note();
                 if (includeDate)
                 {
@@ -113,7 +107,40 @@ namespace WorkerDock.Plugins
                 string index = note.GetHashCode().ToString();
                 note.Index = index;
                 DataTable.Add(index, note);
-            }            
+            }
+            else
+            {
+                if (args is null || args.Length == 0)
+                {
+                    Console.WriteLine(File.ReadAllText("Plugins/NotePlugin/InvalidArgAddCall.txt"));
+                }
+                else
+                {
+                    foreach (var item in args)
+                    {
+                        switch (item)
+                        {
+                            case "-d":
+                            case "--date":
+                                includeDate = true;
+                                break;
+                            default:
+                                content = item;
+                                break;
+                        }
+                    }
+
+                    Note note = new Note();
+                    if (includeDate)
+                    {
+                        note.Date = DateTime.UtcNow;
+                    }
+                    note.Content = content;
+                    string index = note.GetHashCode().ToString();
+                    note.Index = index;
+                    DataTable.Add(index, note);
+                }
+            }                        
         }
 
         private void CallDelete(string[] args)
